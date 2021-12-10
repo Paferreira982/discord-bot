@@ -19,7 +19,7 @@ async def printMsg(string, message):
 async def printConvert(command, message):
     token = getTokenInfo(command[1])
     usd = currency.getTokenQuote(token)
-    string = "Você possui ${:.2f} <> R${:.2f} em {}.".format(usd*int(command[2]), currency.usdToBrl(usd)*int(command[2]), token['symbol'])
+    string = "Convertendo {} {}'s\nUSD -> $  {:.2f} \nBRL  -> R$ {:.2f}".format(command[2], token['symbol'], usd*int(command[2]), currency.usdToBrl(usd)*int(command[2]))
     await printMsg(string, message)
 
 async def formatQuoteMsg(command, message):
