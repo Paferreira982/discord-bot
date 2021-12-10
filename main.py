@@ -1,20 +1,14 @@
 import sys
 sys.path.insert(1, './local_lib')
 
-import currency
-from keep_alive import keep_alive
+import commons
 import discord
 import os
+from keep_alive import keep_alive
 
 client = discord.Client()
 
-async def printMsg(string, message):
-  await message.channel.send(string)
-
-async def formatQuoteMsg(coin, message):
-  usd = currency.getTokenQuote(coin)
-  string = "{} \nUSD -> $  {:.2f} \nBRL  -> R$ {:.2f}".format(coin['symbol'], usd, currency.usdToBrl(usd))
-  await printMsg(string, message)
+#eventos do client do discord
 
 @client.event
 async def on_ready():
@@ -25,60 +19,51 @@ async def on_message(message):
   if message.author == client.user and not message.content.startswith("$"):
     return
 
+  coin = ""
   msg = message.content
 
   if msg.startswith("$help") or msg.startswith("$HELP"):
     string = """
     > COMANDOS
     >
-    > Retorna o valor do token em BRL e Dolar em tempo real
+    > Retorna o valor do token em BRL e Dolar em tempo real.
     > \t$bcoin
     > \t$thetan
     > \t$slp
     > \t$milk
     > \t$baby
     >
-    > Converte um valor em token em BRL e Dolar
-    > \t$convert [nome_token] [quantidade] -> Importante dar apenas "um espaço" entre os argumentos do comando.
+    > Converte um valor em token em BRL e Dolar.
+    > \t$convert [token_name] [quantity] -> Importante dar apenas "um espaço" entre os argumentos do comando.
+    > \t[token_name] -> Nome do token (bcoin, thetan, slp, milk, baby).
+    > \t[quantity] -> Quantidade de token a converter.
     """
-    await printMsg(string, message)
+    await commons.printMsg(string, message)
 
-  if ()
-  
-  if msg.startswith("$bcoin") or msg.startswith("$BCOIN"):
+  if msg.startswith("$convert"):
+    msg = msg.split(" ")
     coin = {
       'slug': 'bombcrypto',
       'symbol': 'BCOIN'
     }
-    await formatQuoteMsg(coin, message)
+  
+  
+  if msg.startswith("$bcoin") or msg.startswith("$BCOIN"):
+    commons.formatQuoteMsg('bombcrypto', 'BCOIN', message)
   
   if msg.startswith("$thetan") or msg.startswith("$THETAN"):
-    coin = {
-      'slug': 'thetan-coin',
-      'symbol': 'THC'
-    }
-    await formatQuoteMsg(coin, message)
+    commons.formatQuoteMsg('thetan-coin', 'THC', message)
   
   if msg.startswith("$slp") or msg.startswith("$SLP"):
-    coin = {
-      'slug': 'smooth-love-potion',
-      'symbol': 'SLP'
-    }
-    await formatQuoteMsg(coin, message)
+    commons.formatQuoteMsg('smooth-love-potion', 'SLP', message)
 
   if msg.startswith("$milk") or msg.startswith("$MILK"):
-    coin = {
-      'slug': 'the-crypto-you',
-      'symbol': 'MILK'
-    }
-    await formatQuoteMsg(coin, message)
+    commons.formatQuoteMsg('the-crypto-you', 'MILK', message)
   
   if msg.startswith("$baby") or msg.startswith("$BABY"):
-    coin = {
-      'slug': 'babyswap',
-      'symbol': 'BABY'
-    }
-    await formatQuoteMsg(coin, message)
+    commons.formatQuoteMsg('babyswap', 'BABY', message)
+  
+  
 
 keep_alive()
 client.run(os.environ['token'])
