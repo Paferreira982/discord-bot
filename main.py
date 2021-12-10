@@ -20,6 +20,7 @@ async def on_message(message):
     return
 
   msg = message.content
+  command = msg.split(" ")
 
   if msg.startswith("$help") or msg.startswith("$HELP"):
     string = """
@@ -37,30 +38,10 @@ async def on_message(message):
     await commons.printMsg(string, message)
 
   if msg.startswith("$convert"):
-    command = msg.split(" ")
-    usd = currency.getTokenQuote(slug, symbol)
+    await commons.printConvert(command, message)
 
   if msg.startswith("$price"):
-    commons.formatQuoteMsg(commons.getTokenInfo(command[2]), message)
+    await commons.formatQuoteMsg(command, message)
   
-  
-  if msg.startswith("$bcoin") or msg.startswith("$BCOIN"):
-    token = commons.getTokenInfo(command[2])
-    commons.formatQuoteMsg('bombcrypto', 'BCOIN', message)
-  
-  if msg.startswith("$thetan") or msg.startswith("$THETAN"):
-    commons.formatQuoteMsg('thetan-coin', 'THC', message)
-  
-  if msg.startswith("$slp") or msg.startswith("$SLP"):
-    commons.formatQuoteMsg('smooth-love-potion', 'SLP', message)
-
-  if msg.startswith("$milk") or msg.startswith("$MILK"):
-    commons.formatQuoteMsg('the-crypto-you', 'MILK', message)
-  
-  if msg.startswith("$baby") or msg.startswith("$BABY"):
-    commons.formatQuoteMsg('babyswap', 'BABY', message)
-  
-  
-
 keep_alive()
 client.run(os.environ['token'])
