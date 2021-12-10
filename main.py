@@ -41,7 +41,7 @@ async def on_message(message):
     usd = currency.getTokenQuote(slug, symbol)
 
   if msg.startswith("$price"):
-    token = commons.getTokenInfo(command[2])
+    commons.formatQuoteMsg(commons.getTokenInfo(command[2]), message)
   
   
   if msg.startswith("$bcoin") or msg.startswith("$BCOIN"):

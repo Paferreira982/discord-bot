@@ -33,13 +33,13 @@ def getId(symbol):
   except Exception as e:
     print(e)
 
-def getTokenQuote(slug, symbol):
+def getTokenQuote(token):
   try:
     parameters = {
-      'slug': slug
+      'slug': token['slug']
     }
 
-    token_id = getId(symbol)
+    token_id = getId(token['symbol'])
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest", headers=headers, params=parameters)
     response = json.loads(response.text)
 
