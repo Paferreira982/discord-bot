@@ -13,7 +13,6 @@ async def printMsg(string, message):
 async def formatQuoteMsg(coin, message):
   usd = currency.getTokenQuote(coin)
   string = "{} \nUSD -> $  {:.2f} \nBRL  -> R$ {:.2f}".format(coin['symbol'], usd, currency.usdToBrl(usd))
-  print(string)
   await printMsg(string, message)
 
 @client.event

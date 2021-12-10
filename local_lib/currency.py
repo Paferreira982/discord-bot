@@ -23,7 +23,6 @@ def getId(currency):
 
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/map", headers=headers, params=parameters)
     response = json.loads(response.text)
-    print(response)
     for data in response['data']:
       if data['slug'] == currency['slug']:
         return str(data['id'])
