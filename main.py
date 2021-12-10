@@ -5,10 +5,7 @@ import currency
 import discord
 import os
 
-
-print(currency.USDToBRL(1))
-import discord
-import os
+currency.test()
 
 client = discord.Client()
 
