@@ -2,6 +2,7 @@ import sys
 sys.path.insert(1, './local_lib')
 
 import currency
+from keep_alive import keep_alive
 import discord
 import os
 
@@ -59,4 +60,5 @@ async def on_message(message):
     }
     await formatQuoteMsg(coin, message)
 
+keep_alive()
 client.run(os.environ['token'])
