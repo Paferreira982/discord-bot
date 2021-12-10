@@ -7,6 +7,9 @@ import os
 
 
 print(currency.USDToBRL(1))
+import discord
+import os
+
 client = discord.Client()
 
 @client.event
