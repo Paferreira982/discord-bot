@@ -24,5 +24,14 @@ async def on_message(message):
 
     usd = currency.getTokenQuote(coin)
     await message.channel.send("{} \nUSD -> $ {} \nBRL  -> R$ {}".format(coin['symbol'], usd, currency.usdToBrl(usd)))
+  
+  if message.content.startswith("$thetan") or message.content.startswith("$THETAN"):
+    coin = {
+      'slug': 'thetan-coin',
+      'symbol': 'THC'
+    }
+
+    usd = currency.getTokenQuote(coin)
+    await message.channel.send("{} \nUSD -> $ {} \nBRL  -> R$ {}".format(coin['symbol'], usd, currency.usdToBrl(usd)))
 
 client.run(os.environ['token'])
