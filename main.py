@@ -22,50 +22,58 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  if message.author == client.user:
+  if message.author == client.user and not message.content.startswith("$"):
     return
 
-  if message.content.startswith("$help") or message.content.startswith("$HELP"):
+  msg = message.content
+
+  if msg.startswith("$help") or msg.startswith("$HELP"):
     string = """
     > COMANDOS
-    > Retorna o valor do token em BRL e Dolar
+    >
+    > Retorna o valor do token em BRL e Dolar em tempo real
     > \t$bcoin
     > \t$thetan
     > \t$slp
     > \t$milk
     > \t$baby
+    >
+    > Converte um valor em token em BRL e Dolar
+    > \t$convert [nome_token] [quantidade] -> Importante dar apenas "um espaço" entre os argumentos do comando.
     """
     await printMsg(string, message)
+
+  if ()
   
-  if message.content.startswith("$bcoin") or message.content.startswith("$BCOIN"):
+  if msg.startswith("$bcoin") or msg.startswith("$BCOIN"):
     coin = {
       'slug': 'bombcrypto',
       'symbol': 'BCOIN'
     }
     await formatQuoteMsg(coin, message)
   
-  if message.content.startswith("$thetan") or message.content.startswith("$THETAN"):
+  if msg.startswith("$thetan") or msg.startswith("$THETAN"):
     coin = {
       'slug': 'thetan-coin',
       'symbol': 'THC'
     }
     await formatQuoteMsg(coin, message)
   
-  if message.content.startswith("$slp") or message.content.startswith("$SLP"):
+  if msg.startswith("$slp") or msg.startswith("$SLP"):
     coin = {
       'slug': 'smooth-love-potion',
       'symbol': 'SLP'
     }
     await formatQuoteMsg(coin, message)
 
-  if message.content.startswith("$milk") or message.content.startswith("$MILK"):
+  if msg.startswith("$milk") or msg.startswith("$MILK"):
     coin = {
       'slug': 'the-crypto-you',
       'symbol': 'MILK'
     }
     await formatQuoteMsg(coin, message)
   
-  if message.content.startswith("$baby") or message.content.startswith("$BABY"):
+  if msg.startswith("$baby") or msg.startswith("$BABY"):
     coin = {
       'slug': 'babyswap',
       'symbol': 'BABY'
