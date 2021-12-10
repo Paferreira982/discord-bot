@@ -24,6 +24,18 @@ async def on_ready():
 async def on_message(message):
   if message.author == client.user:
     return
+
+  if message.content.startswith("$help") or message.content.startswith("$HELP"):
+    string = """
+    > COMANDOS
+    > Retorna o valor do token em BRL e Dolar
+    > \t$bcoin
+    > \t$thetan
+    > \t$slp
+    > \t$milk
+    > \t$baby
+    """
+    await printMsg(string, message)
   
   if message.content.startswith("$bcoin") or message.content.startswith("$BCOIN"):
     coin = {
