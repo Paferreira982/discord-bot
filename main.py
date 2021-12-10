@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(1, './lib')
+sys.path.insert(1, './local_lib')
 
 import currency
 import discord
