@@ -46,4 +46,18 @@ async def on_message(message):
     }
     await formatQuoteMsg(coin, message)
 
+  if message.content.startswith("$milk") or message.content.startswith("$MILK"):
+    coin = {
+      'slug': 'the-crypto-you',
+      'symbol': 'MILK'
+    }
+    await formatQuoteMsg(coin, message)
+  
+  if message.content.startswith("$baby") or message.content.startswith("$BABY"):
+    coin = {
+      'slug': 'babyswap',
+      'symbol': 'BABY'
+    }
+    await formatQuoteMsg(coin, message)
+
 client.run(os.environ['token'])
