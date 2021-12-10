@@ -8,11 +8,6 @@ async def printMsg(string, message):
   await message.channel.send(string)
 
 async def formatQuoteMsg(slug, symbol, message):
-  coin = {
-    'slug': slug,
-    'symbol': symbol
-  }
-
-  usd = currency.getTokenQuote(coin)
-  string = "{} \nUSD -> $  {:.2f} \nBRL  -> R$ {:.2f}".format(coin['symbol'], usd, currency.usdToBrl(usd))
+  usd = currency.getTokenQuote(slug, symbol)
+  string = "{} \nUSD -> $  {:.2f} \nBRL  -> R$ {:.2f}".format(symbol, usd, currency.usdToBrl(usd))
   await printMsg(string, message)

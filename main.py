@@ -42,10 +42,7 @@ async def on_message(message):
 
   if msg.startswith("$convert"):
     msg = msg.split(" ")
-    coin = {
-      'slug': 'bombcrypto',
-      'symbol': 'BCOIN'
-    }
+    commons.
   
   
   if msg.startswith("$bcoin") or msg.startswith("$BCOIN"):
