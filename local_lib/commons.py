@@ -19,7 +19,6 @@ async def printMsg(string, message):
 async def printConvert(command, message):
     token = getTokenInfo(command[1])
     usd = currency.getTokenQuote(token)
-    brl = currency.usdToBrl(usd)
     string = "Você possui ${:.2f} <> R${:.2f} em {}.".format(usd*int(command[2]), currency.usdToBrl(usd)*int(command[2]), token['symbol'])
     await printMsg(string, message)
 
