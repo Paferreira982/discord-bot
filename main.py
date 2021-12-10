@@ -26,16 +26,12 @@ async def on_message(message):
     string = """
     > COMANDOS
     > [token_name] -> Nome do token (bcoin, thetan, slp, milk, baby).
-    > [quantity] -> Quantidade de token a converter.
-    >.
-    > Importante dar apenas "um espaço" entre os argumentos do comando.
-    >.
+    > [quantity] -> Quantidade de token a converter.\n
+    > Importante dar apenas "um espaço" entre os argumentos do comando.\n
     > Retorna o valor do token em BRL e Dolar em tempo real.
-    > \t$price [token_name]
-    >.
+    > \t$price [token_name]\n
     > Converte um valor em token em BRL e Dolar.
-    > \t$convert [token_name] [quantity]
-    >.
+    > \t$convert [token_name] [quantity]\n
     > Imprime a lista de tokens cadastrados.
     > \t$tokens
     """
