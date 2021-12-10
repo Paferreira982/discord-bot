@@ -6,7 +6,7 @@ def usdToBrl(dolar):
   try:
     response = requests.get("http://economia.awesomeapi.com.br/json/last/USD-BRL")
     response = json.loads(response.text)
-    return round(float(response['USDBRL']['bid'] * dolar), 2)
+    return round(float(response['USDBRL']['bid']) * dolar, 2)
   except Exception as e:
     print(e)
 
@@ -28,7 +28,7 @@ def getId(symbol):
   except Exception as e:
     print(e)
 
-def getQuotes(currency):
+def getTokenQuote(currency):
   try:
     parameters = {
       'slug': currency['slug']
@@ -40,9 +40,9 @@ def getQuotes(currency):
     }
 
     token_id = getId(currency['symbol'])
-
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest", headers=headers, params=parameters)
     response = json.loads(response.text)
+
     return round(float(response['data'][token_id]['quote']['USD']['price']),2)
   except Exception as e:
     print(e)

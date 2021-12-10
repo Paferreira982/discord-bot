@@ -5,12 +5,6 @@ import currency
 import discord
 import os
 
-aux = {
-  'slug': 'bombcrypto',
-  'symbol': 'BCOIN'
-}
-print(currency.getQuotes(aux))
-
 client = discord.Client()
 
 @client.event
@@ -22,7 +16,13 @@ async def on_message(message):
   if message.author == client.user:
     return
   
-  if message.content.startswith("$ola"):
-    await message.channel.send("Olá!")
+  if message.content.startswith("$bcoin") or message.content.startswith("$BCOIN"):
+    coin = {
+      'slug': 'bombcrypto',
+      'symbol': 'BCOIN'
+    }
+
+    usd = currency.getTokenQuote(coin)
+    await message.channel.send("{} \nUSD -> $ {} \nBRL  -> R$ {}".format(coin['symbol'], usd, currency.usdToBrl(usd)))
 
 client.run(os.environ['token'])
