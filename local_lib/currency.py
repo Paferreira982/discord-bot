@@ -10,10 +10,10 @@ def usdToBrl(dolar):
   except Exception as e:
     print(e)
 
-def test():
+def getId(symbol):
   try:
     parameters = {
-      'slug': 'bombcrypto'
+      'symbol': symbol
     }
 
     headers = {
@@ -21,9 +21,28 @@ def test():
       'X-CMC_PRO_API_KEY': os.environ['coin_market_token'],
     }
 
+    response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/map", headers=headers, params=parameters)
+    response = json.loads(response.text)
+    return str(response['data'][0]['id'])
+
+  except Exception as e:
+    print(e)
+
+def getQuotes(currency):
+  try:
+    parameters = {
+      'slug': currency['slug']
+    }
+
+    headers = {
+      'Accepts': 'application/json',
+      'X-CMC_PRO_API_KEY': os.environ['coin_market_token'],
+    }
+
+    token_id = getId(currency['symbol'])
+
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest", headers=headers, params=parameters)
     response = json.loads(response.text)
-    return round(float(response['data'][]),2)
-
+    return round(float(response['data'][token_id]['quote']['USD']['price']),2)
   except Exception as e:
     print(e)

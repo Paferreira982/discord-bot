@@ -5,7 +5,11 @@ import currency
 import discord
 import os
 
-currency.test()
+aux = {
+  'slug': 'bombcrypto',
+  'symbol': 'BCOIN'
+}
+print(currency.getQuotes(aux))
 
 client = discord.Client()
 
