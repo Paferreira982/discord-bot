@@ -15,17 +15,17 @@ def usdToBrl(dolar):
   except Exception as e:
     print(e)
 
-def getId(symbol):
+def getId(slug):
   try:
     parameters = {
-      'symbol': symbol
+      'symbol': slug
     }
 
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/map", headers=headers, params=parameters)
     response = json.loads(response.text)
     
     for data in response['data']:
-      if data['slug'] == symbol:
+      if data['slug'] == slug:
         return str(data['id'])
         
     return str(response['data'][0]['id'])
@@ -39,7 +39,7 @@ def getTokenQuote(token):
       'slug': token['slug']
     }
 
-    token_id = getId(token['symbol'])
+    token_id = getId(token['slug'])
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest", headers=headers, params=parameters)
     response = json.loads(response.text)
 
