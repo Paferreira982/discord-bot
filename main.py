@@ -18,7 +18,7 @@ async def on_message(message):
   if message.author == client.user and not message.content.startswith("$"):
     return
 
-  msg = message.content
+  msg = message.content.strip()
   command = msg.replace("  ","").split(" ")
   print(command)
 
