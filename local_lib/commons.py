@@ -1,6 +1,11 @@
 import discord
 import currency
 
+def adjustCommand(msg):
+    while("  " in msg):
+        msg = msg.replace("  ", " ")
+    return msg.split(" ")
+
 def getTokenInfo(tokenName):
     if tokenName == "bcoin":
         return {'slug': 'bombcrypto', 'symbol': 'BCOIN'}
@@ -26,8 +31,7 @@ Help
 Comandos
 \t$price [token_name] -> Retorna o valor do token em BRL e Dolar em tempo real.
 \t$convert [quantity] [token_name] -> Converte um valor em token em BRL e Dolar.
-\t$tokens -> Imprime a lista de tokens cadastrados.
-    ```"""
+\t$tokens -> Imprime a lista de tokens cadastrados.```"""
     await printMsg(string, message)
 
 async def printPrice(command, message):

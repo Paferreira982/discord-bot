@@ -19,8 +19,7 @@ async def on_message(message):
     return
 
   msg = message.content.strip()
-  command = msg.replace("  ","").split(" ")
-  print(command)
+  command = commons.adjustCommand(msg)
 
   if msg.startswith("$help") or msg.startswith("$HELP"):
     await commons.printHelp(message)
