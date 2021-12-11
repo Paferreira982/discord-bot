@@ -1,4 +1,4 @@
-from flask import Flask
+#Código obtido na internet, responsável por subir um servidor https, afim de manter o bot online 24hrs.
 from threading import Thread
 
 app = Flask('')

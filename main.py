@@ -1,5 +1,9 @@
+#Author: Pedro Augusto
+#Script principal: Gerencia os comandos proveniente do usuário.
 import sys
 import os
+
+#Insere a pasta "local_lib" no path do sistema, para tornar os scripts presentes nesta pasta visiveis.
 sys.path.insert(1, './local_lib')
 
 import commons
@@ -8,13 +12,15 @@ from keep_alive import keep_alive
 
 client = discord.Client()
 
-#eventos do client do discord
+#Função responsável por informar se o login no BOT foi bem-sucedido.
 @client.event
 async def on_ready():
   print("Logado como {0.user}".format(client))
 
+#Função responsável por capturar a input do usuário e indêntificar qual comando foi enviado.
 @client.event
 async def on_message(message):
+  #Encerra a verificação da input, caso a mensagem do sistem seja proveniente do BOT.
   if message.author == client.user and not message.content.startswith("$"):
     return
 
