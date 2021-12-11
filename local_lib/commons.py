@@ -19,12 +19,12 @@ async def printMsg(string, message):
     await message.channel.send(string)
 
 async def printHelp(message):
-    string = """``` Help\n
-    \t[token_name] -> Nome do token.\n
+    string = """```Help
+    \t[token_name] -> Nome do token.
     \t[quantity] -> Quantidade de token a converter.\n
-     Comandos\n
-    \t$price [token_name] -> Retorna o valor do token em BRL e Dolar em tempo real.\n
-    \t$convert [quantity] [token_name] -> Converte um valor em token em BRL e Dolar.\n
+    Comandos
+    \t$price [token_name] -> Retorna o valor do token em BRL e Dolar em tempo real.
+    \t$convert [quantity] [token_name] -> Converte um valor em token em BRL e Dolar.
     \t$tokens -> Imprime a lista de tokens cadastrados.
     ```"""
     await printMsg(string, message)
@@ -44,6 +44,6 @@ async def printConvert(command, message):
 async def printTokens(message):
     string = "```Tokens cadastrados: "
     for tokenName in getTokenInfo("all"):
-        string += tokenName.lower() + ", "
+        string += tokenName.lower() + " "
     string += "```"
     await printMsg(string, message)
