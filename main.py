@@ -27,10 +27,13 @@ async def on_message(message):
     > COMANDOS
     > [token_name] -> Nome do token (bcoin, thetan, slp, milk, baby).
     > [quantity] -> Quantidade de token a converter.
-    > Importante dar apenas "um espaço" entre os argumentos do comando.
-    > $price [token_name] -> Retorna o valor do token em BRL e Dolar em tempo real.
-    > $convert [token_name] [quantity] -> Converte um valor em token em BRL e Dolar.
-    > $tokens -> Imprime a lista de tokens cadastrados.
+    > Importante dar apenas "um espaço" entre os argumentos do comando. \n
+    > COMANDO
+    > \t$price [token_name] -> Retorna o valor do token em BRL e Dolar em tempo real.
+    > COMANDO
+    > \t$convert [token_name] [quantity] -> Converte um valor em token em BRL e Dolar.
+    > COMANDO
+    > \t$tokens -> Imprime a lista de tokens cadastrados.
     """
     await commons.printMsg(string, message)
 
