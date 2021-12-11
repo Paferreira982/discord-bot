@@ -35,13 +35,13 @@ async def on_message(message):
     await commons.printMsg(string, message)
 
   if msg.startswith("$tokens"):
-    await commons.printMsg("Tokens cadastrados: bcoin, thetan, slp, milk, baby", message)
+    await commons.printTokens(message)
 
   if msg.startswith("$convert"):
     await commons.printConvert(command, message)
 
   if msg.startswith("$price"):
-    await commons.formatQuoteMsg(command, message)
+    await commons.printPrice(command, message)
   
 keep_alive()
 client.run(os.environ['token'])
