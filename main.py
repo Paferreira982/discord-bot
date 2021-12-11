@@ -1,10 +1,9 @@
 import sys
+import os
 sys.path.insert(1, './local_lib')
 
 import commons
-import currency
 import discord
-import os
 from keep_alive import keep_alive
 
 client = discord.Client()
@@ -20,7 +19,7 @@ async def on_message(message):
     return
 
   msg = message.content
-  command = msg.split(" ")
+  command = msg.replace("  ","").split(" ")
 
   if msg.startswith("$help") or msg.startswith("$HELP"):
     await commons.printHelp(message)
