@@ -23,16 +23,7 @@ async def on_message(message):
   command = msg.split(" ")
 
   if msg.startswith("$help") or msg.startswith("$HELP"):
-    string = """
-    > Help
-    > \t[token_name] -> Nome do token (bcoin, thetan, slp, milk, baby).
-    > \t[quantity] -> Quantidade de token a converter.
-    > Comandos
-    > \t$price [token_name] -> Retorna o valor do token em BRL e Dolar em tempo real.
-    > \t$convert [token_name] [quantity] -> Converte um valor em token em BRL e Dolar.
-    > \t$tokens -> Imprime a lista de tokens cadastrados.
-    """
-    await commons.printMsg(string, message)
+    await commons.printHelp(message)
 
   if msg.startswith("$tokens"):
     await commons.printTokens(message)
