@@ -19,7 +19,8 @@ async def printMsg(string, message):
     await message.channel.send(string)
 
 async def printHelp(message):
-    string = """```Help
+    string = """```
+    Help
     \t[token_name] -> Nome do token.
     \t[quantity] -> Quantidade de token a converter.\n
     Comandos
