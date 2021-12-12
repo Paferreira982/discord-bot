@@ -27,7 +27,7 @@ async def on_message(message):
   msg = message.content.strip()
   command = commons.adjustCommand(msg)
 
-  if msg.startswith("$help") or msg.startswith("$HELP"):
+  if msg.startswith("$help"):
     await commons.printHelp(message)
 
   if msg.startswith("$tokens"):
