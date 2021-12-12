@@ -3,7 +3,7 @@
 import sys
 import os
 
-#Insere a pasta "local_lib" no path do sistema, para tornar os scripts presentes nesta pasta visiveis.
+#Insere a pasta "local_lib" no path do sistema, para tornar os scripts presentes visíveis.
 sys.path.insert(1, './local_lib')
 
 import commons
@@ -12,12 +12,12 @@ from keep_alive import keep_alive
 
 client = discord.Client()
 
-#Função responsável por informar se o login no BOT foi bem-sucedido.
+#Função responsável por informar se o login no BOT foi bem sucedido.
 @client.event
 async def on_ready():
   print("Logado como {0.user}".format(client))
 
-#Função responsável por capturar a input do usuário e indêntificar qual comando foi enviado.
+#Função responsável por capturar a input do usuário e identificar qual comando foi enviado.
 @client.event
 async def on_message(message):
   #Encerra a verificação da input, caso a mensagem do sistem seja proveniente do BOT.

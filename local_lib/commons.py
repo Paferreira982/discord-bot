@@ -3,7 +3,7 @@
 import discord
 import currency
 
-#Função responsável por remover espaços duplos da mensagem do usuário, e retorna uma array denominada "command"
+#Função responsável por remover espaços duplos da mensagem do usuário e retorna uma array denominada "command".
 def adjustCommand(msg):
     while("  " in msg):
         msg = msg.replace("  ", " ")
