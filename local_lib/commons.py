@@ -34,9 +34,9 @@ async def printHelp(message):
     string = """```
 Help
 \t[token_name] -> Nome do token.
-\t[quantity] -> Quantidade de token a converter.\n
+\t[quantity]   -> Quantidade de token a converter.\n
 Comandos
-\t$price [token_name] -> Retorna o valor do token em BRL e Dolar em tempo real.
+\t$price [token_name]              -> Retorna o valor do token em BRL e Dolar em tempo real.
 \t$convert [quantity] [token_name] -> Converte um valor em token em BRL e Dolar.
 \t$tokens -> Imprime a lista de tokens cadastrados.```"""
     await printMsg(string, message)
