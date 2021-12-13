@@ -2,6 +2,16 @@
 #Lib commons: Biblioteca que guarda todas as funções que são utilizadas pelo script principal (main.py).
 import discord
 import currency
+import riot_lib
+
+helpString = """```
+Help
+\t[token_name] -> Nome do token.
+\t[quantity]   -> Quantidade de token a converter.\n
+Comandos
+\t$price   [token_name]               -> Retorna o valor do token em BRL e Dolar em tempo real.
+\t$convert  [quantity]   [token_name] -> Converte um valor em token em BRL e Dolar.
+\t$tokens                             -> Imprime a lista de tokens cadastrados.```"""
 
 #Função responsável por remover espaços duplos da mensagem do usuário e retorna uma array denominada "command".
 def adjustCommand(msg):
@@ -31,15 +41,7 @@ async def printMsg(string, message):
 
 #Função responsável por escrever a mensagem do comando "$help"
 async def printHelp(message):
-    string = """```
-Help
-\t[token_name] -> Nome do token.
-\t[quantity]   -> Quantidade de token a converter.\n
-Comandos
-\t$price [token_name]              -> Retorna o valor do token em BRL e Dolar em tempo real.
-\t$convert [quantity] [token_name] -> Converte um valor em token em BRL e Dolar.
-\t$tokens -> Imprime a lista de tokens cadastrados.```"""
-    await printMsg(string, message)
+    await printMsg(helpString, message)
 
 #Função responsável por escrever a mensagem do comando "$price"
 async def printPrice(command, message):
@@ -60,5 +62,22 @@ async def printTokens(message):
     string = "```Tokens cadastrados: "
     for tokenName in getTokenInfo("all"):
         string += tokenName.lower() + " "
+    string += "```"
+    await printMsg(string, message)
+
+def calculateWinRate(rank):
+    return rank['wins'] * 100 / (rank['wins'] + rank['losses'])
+
+def generateRankingString(rank):
+    return "{} {} | {} PDL | WR {}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
+
+async def printLolRank(name, message):
+    ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(name))
+    string = "```{}".format(name)
+    for rank in ranks:
+        if rank['queueType'] == 'RANKED_SOLO_5x5':
+            string += "\n\tSoloQ -> " + generateRankingString(rank)
+        elif rank['queueType'] == 'RANKED_FLEX_SR':
+            string += "\n\Felx  -> " + generateRankingString(rank)
     string += "```"
     await printMsg(string, message)
