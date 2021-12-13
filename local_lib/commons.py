@@ -67,12 +67,15 @@ async def printConvert(command, message):
         string = 'Argumentos insuficientes para o comando "$convert".'
     else:
         token = getTokenInfo(command[2].lower())
-        
+
         if token is not None:
             usd = currency.getTokenQuote(token)
-            string = "```{} {}'s\nUSD ->  $ {:.2f}\nBRL -> R$ {:.2f}```".format(command[1], token['symbol'], usd*float(command[1]), currency.usdToBrl(usd)*float(command[1]))
+            if command[1].isnumeric():
+                string = "```{} {}'s\nUSD ->  $ {:.2f}\nBRL -> R$ {:.2f}```".format(command[1], token['symbol'], usd*float(command[1]), currency.usdToBrl(usd)*float(command[1]))
+            else:
+                string = "O argumento [quantity] precisa ser preenchido com um número."
         else:
-            string = "Token {} não existente/cadastrado.".format(command[1])
+            string = "Token {} não existente/cadastrado.".format(command[2])
 
     await printMsg(string, message)
 
