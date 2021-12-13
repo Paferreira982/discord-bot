@@ -13,7 +13,7 @@ from timer import Timer
 from keep_alive import keep_alive
 
 client = discord.Client()
-timer1 = Timer(interval=1200, first_immediately=True, client=client, callback=commons.statusInterval)
+timer1 = Timer(interval=1200, first_immediately=True, timer_name="Timer 1", client=client, callback=commons.statusInterval)
 
 #Função responsável por informar se o login no BOT foi bem sucedido.
 @client.event
