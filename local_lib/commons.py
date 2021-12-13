@@ -56,6 +56,7 @@ def getRandomStatusString():
     return "{} R$ {:.2f} | {:.2f}%".format(coin['symbol'], currency.usdToBrl(usd), dailyChange)
 
 async def statusInterval(client):
+    print("Changing Status")
     await client.change_presence(activity=discord.Game(name=getRandomStatusString()))
 
 #Função responsável por escrever uma mensagem já tratada no discord.
