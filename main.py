@@ -13,13 +13,12 @@ from timer import Timer
 from keep_alive import keep_alive
 
 client = discord.Client()
-print(client)
-timer1 = Timer(interval=1200, first_immediately=True, timer_name="Timer 1", client=client, callback=commons.statusInterval)
 
 #Função responsável por informar se o login no BOT foi bem sucedido.
 @client.event
 async def on_ready():
   print("Logado como {0.user}".format(client))
+  timer1 = Timer(interval=1200, first_immediately=True, timer_name="Timer 1", client=client, callback=commons.statusInterval)
   
 #Função responsável por capturar a input do usuário e identificar qual comando foi enviado.
 @client.event
