@@ -17,7 +17,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
   print("Logado como {0.user}".format(client))
-  Timer(1200, await commons.statusInterval(client))
+  Timer(1200, await commons.statusInterval(client)).start()
   
 #Função responsável por capturar a input do usuário e identificar qual comando foi enviado.
 @client.event
