@@ -27,16 +27,17 @@ def adjustCommand(msg):
 def getTokenInfo(tokenName):
     if tokenName == "bcoin":
         return {'slug': 'bombcrypto', 'symbol': 'BCOIN'}
-    elif tokenName == "thetan":
+    if tokenName == "thetan":
         return {'slug': 'thetan-coin', 'symbol': 'THC'}
-    elif tokenName == "slp":
+    if tokenName == "slp":
         return {'slug': 'smooth-love-potion', 'symbol': 'SLP'}
-    elif tokenName == "milk":
+    if tokenName == "milk":
         return {'slug': 'the-crypto-you', 'symbol': 'MILK'}
-    elif tokenName == "baby":
+    if tokenName == "baby":
         return {'slug': 'babyswap', 'symbol': 'BABY'}
-    elif tokenName == "all":
+    if tokenName == "all":
         return {'BCOIN','THC','SLP','MILK','BABY'}
+    return None
 
 #Função responsável por escrever uma mensagem já tratada no discord.
 async def printMsg(string, message):
@@ -49,15 +50,30 @@ async def printHelp(message):
 #Função responsável por escrever a mensagem do comando "$price"
 async def printPrice(command, message):
     token = getTokenInfo(command[1])
-    usd = currency.getTokenQuote(token)
-    string = "```Valor atual do {}\nUSD ->  $ {:.2f}\nBRL -> R$ {:.2f}```".format(token['symbol'], usd, currency.usdToBrl(usd))
+    string = ""
+
+    if token is not None:
+        usd = currency.getTokenQuote(token)
+        string = "```Valor atual do {}\nUSD ->  $ {:.2f}\nBRL -> R$ {:.2f}```".format(token['symbol'], usd, currency.usdToBrl(usd))
+    else:
+        string = "Token {} não existente/cadastrado.".format(command[1])
+
     await printMsg(string, message)
 
 #Função responsável por escrever a mensagem do comando "$convert"
 async def printConvert(command, message):
-    token = getTokenInfo(command[2].lower())
-    usd = currency.getTokenQuote(token)
-    string = "```{} {}'s\nUSD ->  $ {:.2f}\nBRL -> R$ {:.2f}```".format(command[1], token['symbol'], usd*float(command[1]), currency.usdToBrl(usd)*float(command[1]))
+    string = ""
+    if len(command) != 3:
+        string = 'Argumentos insuficientes para o comando "$convert".'
+    else:
+        token = getTokenInfo(command[2].lower())
+        
+        if token is not None:
+            usd = currency.getTokenQuote(token)
+            string = "```{} {}'s\nUSD ->  $ {:.2f}\nBRL -> R$ {:.2f}```".format(command[1], token['symbol'], usd*float(command[1]), currency.usdToBrl(usd)*float(command[1]))
+        else:
+            string = "Token {} não existente/cadastrado.".format(command[1])
+
     await printMsg(string, message)
 
 #Função responsável por escrever a mensagem do comando "$tokens"
