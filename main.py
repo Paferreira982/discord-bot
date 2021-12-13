@@ -27,20 +27,21 @@ async def on_message(message):
   msg = message.content.strip()
   command = commons.adjustCommand(msg)
 
-  if msg.startswith("$help"):
-    await commons.printHelp(message)
+  if len(command) > 0:
+    if msg.startswith("$convert"):
+      await commons.printConvert(command, message)
 
-  if msg.startswith("$tokens"):
-    await commons.printTokens(message)
-
-  if msg.startswith("$convert"):
-    await commons.printConvert(command, message)
-
-  if msg.startswith("$price"):
-    await commons.printPrice(command, message)
+    if msg.startswith("$price"):
+      await commons.printPrice(command, message)
   
-  if msg.startswith("$rank"):
-    await commons.printLolRank(command, message)
+    if msg.startswith("$rank"):
+      await commons.printLolRank(command, message)
+  else:
+    if msg.startswith("$help"):
+      await commons.printHelp(message)
+
+    if msg.startswith("$tokens"):
+      await commons.printTokens(message)
   
 keep_alive()
 client.run(os.environ['token'])
