@@ -72,26 +72,28 @@ def calculateWinRate(rank):
     return rank['wins'] * 100 / (rank['wins'] + rank['losses'])
 
 def generateRankingString(rank):
-    return "{} {} | {} PDL | WR {:.2f}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
+    return "{} {} | {} PDL | WinRate {:.2f}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
 
 async def printLolRank(command, message):
     summonerName = ""
+    
     if len(command) > 2:
         for i, arg in enumerate(command):
             if i is not 0:
                 summonerName += " " + arg
-    
-    print(summonerName)
+
     ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(summonerName))
+
     string = "```"
     if ranks is not None:
         for rank in ranks:
-            string += rank['summonerName']
             if rank['queueType'] == 'RANKED_SOLO_5x5':
+                string += rank['summonerName']
                 string += "\n\tSoloQ -> " + generateRankingString(rank)
             elif rank['queueType'] == 'RANKED_FLEX_SR':
                 string += "\n\tFlex  -> " + generateRankingString(rank)
     else:
         string += "Summoner {} não encontrado.".format(summonerName)
+
     string += "```"
     await printMsg(string, message)
