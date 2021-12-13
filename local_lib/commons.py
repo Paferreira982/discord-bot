@@ -53,7 +53,7 @@ def getRandomStatusString():
     usd = currency.getTokenQuote(token, token_id)
 
     dailyChange = float(token['data'][token_id]['quote']['USD']['percent_change_24h'])
-    return "{} -> R$ {:.2f} | {:.2f}%".format(coin['symbol'], currency.usdToBrl(usd), dailyChange)
+    return "{} R$ {:.2f} | {:.2f}%".format(coin['symbol'], currency.usdToBrl(usd), dailyChange)
 
 async def statusInterval(client):
     await client.change_presence(activity=discord.Game(name=getRandomStatusString()))
