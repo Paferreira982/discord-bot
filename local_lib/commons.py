@@ -47,6 +47,8 @@ def getRandomStatusString():
     i = random.randint(0,len(tokens))
 
     coin = getTokenInfo(tokens[i].lower())
+    print("[BOT] CHANGING STATUS TO {}".format(coin['symbol']))
+
     token_id = currency.getId(coin)
 
     token = currency.getTokenInfo(coin)
@@ -56,8 +58,6 @@ def getRandomStatusString():
     return "{} R$ {:.2f} | {:.2f}%".format(coin['symbol'], currency.usdToBrl(usd), dailyChange)
 
 async def statusInterval(client):
-    print(client)
-    print("Changing Status")
     await client.change_presence(activity=discord.Game(name=getRandomStatusString()))
 
 #Função responsável por escrever uma mensagem já tratada no discord.
@@ -123,7 +123,7 @@ async def printLolRank(command, message):
                 summonerName += " " + arg
 
     ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(summonerName))
-    string = "```"
+    string = "``` "
 
     if ranks is not None:
         string += summonerName
