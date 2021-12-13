@@ -16,6 +16,7 @@ class Timer:
             while self._ok:
                 if not self._is_first_call or not self._first_immediately:
                     await asyncio.sleep(self._interval)
+                print(self._client)
                 await self._callback(self._client)
                 self._is_first_call = False
         except Exception as ex:
