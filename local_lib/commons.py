@@ -46,10 +46,11 @@ def getRandomStatusString():
     tokens = getTokenInfo("all")
     i = random.randint(0,len(tokens))
 
-    token = getTokenInfo(tokens[i].lower())
-    token_id = currency.getId(token)
+    coin = getTokenInfo(tokens[i].lower())
+    token_id = currency.getId(coin)
 
-    usd = currency.getTokenQuote(currency.getTokenInfo(token), token_id)
+    token = currency.getTokenInfo(coin)
+    usd = currency.getTokenQuote(token, token_id)
 
     dailyChange = float(token['data'][token_id]['quote']['USD']['percent_change_24h'])
     emotic = ""
@@ -57,7 +58,7 @@ def getRandomStatusString():
         emotic = ":arrow_upper_right:"
     else:
         emotic = ":arrow_lower_right:"
-    return "{} -> R$ {:.2f} | {} {:.2f}%".format(token['symbol'], currency.usdToBrl(usd), emotic, dailyChange)
+    return "{} -> R$ {:.2f} | {} {:.2f}%".format(coin['symbol'], currency.usdToBrl(usd), emotic, dailyChange)
 
 async def statusInterval(client):
     await client.change_presence(activity=discord.Game(name=getRandomStatusString()))
