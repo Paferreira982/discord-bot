@@ -39,7 +39,7 @@ def getTokenInfo(tokenName):
     if tokenName == "baby":
         return {'slug': 'babyswap', 'symbol': 'BABY'}
     if tokenName == "all":
-        return {'BCOIN','THC','SLP','MILK','BABY'}
+        return ['BCOIN','THC','SLP','MILK','BABY']
     return None
 
 def getRandomStatusString():
