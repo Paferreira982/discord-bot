@@ -80,13 +80,13 @@ async def printLolRank(command, message):
         for i, arg in enumerate(command):
             summonerName += " " + command[i]
     
-    ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo())
+    ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(summonerName))
     string = "```"
     for rank in ranks:
         string += rank['summonerName']
         if rank['queueType'] == 'RANKED_SOLO_5x5':
             string += "\n\tSoloQ -> " + generateRankingString(rank)
         elif rank['queueType'] == 'RANKED_FLEX_SR':
-            string += "\n\Flex  -> " + generateRankingString(rank)
+            string += "\n\tFlex  -> " + generateRankingString(rank)
     string += "```"
     await printMsg(string, message)
