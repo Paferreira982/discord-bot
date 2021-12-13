@@ -41,5 +41,6 @@ async def on_message(message):
   
   if msg.startswith("$rank"):
     await commons.printLolRank(command, message)
+  
 keep_alive()
 client.run(os.environ['token'])

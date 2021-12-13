@@ -6,12 +6,15 @@ import riot_lib
 
 helpString = """```
 Help
-\t[token_name] -> Nome do token.
-\t[quantity]   -> Quantidade de token a converter.\n
-Comandos
-\t$price   [token_name]               -> Retorna o valor do token em BRL e Dolar em tempo real.
-\t$convert  [quantity]   [token_name] -> Converte um valor em token em BRL e Dolar.
-\t$tokens                             -> Imprime a lista de tokens cadastrados.```"""
+\t[token_name]    -> Nome do token.
+\t[quantity]      -> Quantidade de token a converter.
+\t[summoner_name] -> Nome da conta de League of Legends.\n
+Comandos NFT
+\t$price    [token_name]              -> Retorna o valor do token em BRL e Dolar em tempo real.
+\t$convert  [quantity] [token_name]   -> Converte um valor em token em BRL e Dolar.
+\t$tokens                             -> Imprime a lista de tokens cadastrados.\n
+Comandos League of Legends
+\t$rank [summoner_name]  -> Retorna os ranks das filas flex e solo.```"""
 
 #Função responsável por remover espaços duplos da mensagem do usuário e retorna uma array denominada "command".
 def adjustCommand(msg):
