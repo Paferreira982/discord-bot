@@ -25,8 +25,8 @@ def set_interval(func, sec):
     t.start()
     return t
 
-def statusInterval(client):
-    client.user.setGame("Testing status")
+async def statusInterval(client):
+    await client.change_presence(activity=discord.Game(name="a game"))
 
 #Função responsável por remover espaços duplos da mensagem do usuário e retorna uma array denominada "command".
 def adjustCommand(msg):
