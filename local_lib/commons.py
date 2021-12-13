@@ -75,12 +75,14 @@ def generateRankingString(rank):
     return "{} {} | {} PDL | WR {:.2f}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
 
 async def printLolRank(command, message):
-    summonerName = command[1]
+    summonerName = ""
     if len(command) > 2:
         for i, arg in enumerate(command):
             summonerName += " " + command[i]
     
+    print(summonerName)
     ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(summonerName))
+    print(ranks)
     string = "```"
     for rank in ranks:
         string += rank['summonerName']
