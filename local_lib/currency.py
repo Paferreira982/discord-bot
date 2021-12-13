@@ -61,7 +61,7 @@ def getTokenQuote(token):
   except Exception as e:
     print(e)
 
-def getTokenQuote(token, token_id):
+def getQuote(token, token_id):
   try:
     return float(token['data'][token_id]['quote']['USD']['price'])
   except Exception as e:

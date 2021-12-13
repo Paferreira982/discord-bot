@@ -50,7 +50,7 @@ def getRandomStatusString():
     token_id = currency.getId(coin)
 
     token = currency.getTokenInfo(coin)
-    usd = currency.getTokenQuote(token, token_id)
+    usd = currency.getQuote(token, token_id)
 
     dailyChange = float(token['data'][token_id]['quote']['USD']['percent_change_24h'])
     return "{} R$ {:.2f} | {:.2f}%".format(coin['symbol'], currency.usdToBrl(usd), dailyChange)
