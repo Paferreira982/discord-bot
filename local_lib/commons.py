@@ -69,11 +69,11 @@ def calculateWinRate(rank):
     return rank['wins'] * 100 / (rank['wins'] + rank['losses'])
 
 def generateRankingString(rank):
-    return "{} {} | {} PDL | WR {}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
+    return "{} {} | {} PDL | WR {:.2f}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
 
-async def printLolRank(name, message):
-    ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(name))
-    string = "```{}".format(name)
+async def printLolRank(command, message):
+    ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(command[1]))
+    string = "```{}".format(command[1])
     for rank in ranks:
         if rank['queueType'] == 'RANKED_SOLO_5x5':
             string += "\n\tSoloQ -> " + generateRankingString(rank)
