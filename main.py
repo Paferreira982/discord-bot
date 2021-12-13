@@ -27,7 +27,7 @@ async def on_message(message):
   msg = message.content.strip()
   command = commons.adjustCommand(msg)
 
-  if len(command) > 0:
+  if len(command) > 1:
     if msg.startswith("$convert"):
       await commons.printConvert(command, message)
 
