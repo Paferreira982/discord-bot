@@ -42,14 +42,6 @@ def getTokenInfo(tokenName):
         return {'BCOIN','THC','SLP','MILK','BABY'}
     return None
 
-def set_interval(func, sec):
-    def func_wrapper():
-        set_interval(func, sec)
-        func()
-    t = threading.Timer(sec, func_wrapper)
-    t.start()
-    return t
-
 def getRandomStatusString():
     tokens = getTokenInfo("all")
     i = random.randint(0,len(tokens))

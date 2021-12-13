@@ -2,12 +2,13 @@
 #Script principal: Gerencia os comandos proveniente do usuário.
 import sys
 import os
+from threading import Timer
 
 #Insere a pasta "local_lib" no path do sistema, para tornar os scripts presentes visíveis.
 sys.path.insert(1, './local_lib')
 
-import commons
 import discord
+import commons
 from keep_alive import keep_alive
 
 client = discord.Client()
@@ -16,7 +17,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
   print("Logado como {0.user}".format(client))
-  commons.set_interval(commons.statusInterval(client), 300)
+  Timer(300, commons.statusInterval(client))
   
 #Função responsável por capturar a input do usuário e identificar qual comando foi enviado.
 @client.event
