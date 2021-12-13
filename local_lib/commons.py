@@ -75,19 +75,18 @@ def generateRankingString(rank):
     return "{} {} | {} PDL | WinRate {:.2f}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
 
 async def printLolRank(command, message):
-    summonerName = ""
+    summonerName = command[1]
 
     if len(command) > 2:
         for i, arg in enumerate(command):
-            if i is not 0:
+            if i > 1:
                 summonerName += " " + arg
 
     ranks = riot_lib.getSummonerRank(riot_lib.getSummonerInfo(summonerName))
-
     string = "```"
-    string += summonerName
-    
+
     if ranks is not None:
+        string += summonerName
         for rank in ranks:
             if rank['queueType'] == 'RANKED_SOLO_5x5':
                 string += "\n\tSoloQ -> " + generateRankingString(rank)
