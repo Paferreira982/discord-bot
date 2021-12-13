@@ -2,6 +2,8 @@
 #Lib commons: Biblioteca que guarda todas as funções que são utilizadas pelo script principal (main.py).
 import discord
 import threading
+import random
+
 import currency
 import riot_lib
 
@@ -16,17 +18,6 @@ Comandos NFT
 \t$tokens                             -> Imprime a lista de tokens cadastrados.\n
 Comandos League of Legends
 \t$rank [summoner_name]  -> Retorna os ranks das filas flex e solo.```"""
-
-def set_interval(func, sec):
-    def func_wrapper():
-        set_interval(func, sec)
-        func()
-    t = threading.Timer(sec, func_wrapper)
-    t.start()
-    return t
-
-async def statusInterval(client):
-    await client.change_presence(activity=discord.Game(name="a game"))
 
 #Função responsável por remover espaços duplos da mensagem do usuário e retorna uma array denominada "command".
 def adjustCommand(msg):
@@ -50,6 +41,34 @@ def getTokenInfo(tokenName):
     if tokenName == "all":
         return {'BCOIN','THC','SLP','MILK','BABY'}
     return None
+
+def set_interval(func, sec):
+    def func_wrapper():
+        set_interval(func, sec)
+        func()
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+    return t
+
+def getRandomStatusString():
+    tokens = getTokenInfo("all")
+    i = random.randint(0,len(tokens))
+
+    token = getTokenInfo(tokens[i].lower())
+    token_id = currency.getId(token)
+
+    usd = currency.getTokenQuote(currency.getTokenInfo(token), token_id)
+
+    dailyChange = float(token['data'][token_id]['quote']['USD']['percent_change_24h'])
+    emotic = ""
+    if dailyChange > 0:
+        emotic = ":arrow_upper_right:"
+    else:
+        emotic = ":arrow_lower_right:"
+    return "{} -> R$ {:.2f} | {} {:.2f}%".format(token['symbol'], currency.usdToBrl(usd), emotic, dailyChange)
+
+async def statusInterval(client):
+    await client.change_presence(activity=discord.Game(name=getRandomStatusString()))
 
 #Função responsável por escrever uma mensagem já tratada no discord.
 async def printMsg(string, message):

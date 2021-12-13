@@ -38,17 +38,31 @@ def getId(token):
   except Exception as e:
     print(e)
 
-#Função responsável por obter dados de um token da API do coinmarketcap
-def getTokenQuote(token):
+def getTokenInfo(token):
   try:
     parameters = {
       'slug': token['slug']
     }
 
-    token_id = getId(token)
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest", headers=headers, params=parameters)
     response = json.loads(response.text)
 
+    return response
+  except Exception as e:
+    print(e)
+
+#Função responsável por obter valor em dolar de um token.
+def getTokenQuote(token):
+  try:
+    response = getTokenInfo(token)
+    token_id = getId(token)
+
     return float(response['data'][token_id]['quote']['USD']['price'])
+  except Exception as e:
+    print(e)
+
+def getTokenQuote(token, token_id):
+  try:
+    return float(token['data'][token_id]['quote']['USD']['price'])
   except Exception as e:
     print(e)
