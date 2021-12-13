@@ -1,6 +1,7 @@
 #Author: Pedro Augusto
 #Lib commons: Biblioteca que guarda todas as funções que são utilizadas pelo script principal (main.py).
 import discord
+import threading
 import currency
 import riot_lib
 
@@ -15,6 +16,17 @@ Comandos NFT
 \t$tokens                             -> Imprime a lista de tokens cadastrados.\n
 Comandos League of Legends
 \t$rank [summoner_name]  -> Retorna os ranks das filas flex e solo.```"""
+
+def set_interval(func, sec):
+    def func_wrapper():
+        set_interval(func, sec)
+        func()
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+    return t
+
+def statusInterval(client):
+    client.user.setGame("Testing status")
 
 #Função responsável por remover espaços duplos da mensagem do usuário e retorna uma array denominada "command".
 def adjustCommand(msg):
