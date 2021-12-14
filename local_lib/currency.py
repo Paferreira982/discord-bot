@@ -1,16 +1,20 @@
-#Author: Pedro Augusto
-#Lib currency: Biblioteca que guarda todas as funções relacionadas a tokens e moedas.
 import requests
 import json
 import os
 
-#Cabeçalho utilizado para acesso à API do coinmarketcap
+###########################
+# CONFIGURATION VARIABLES #
+###########################
+
 headers = {
   'Accepts': 'application/json',
   'X-CMC_PRO_API_KEY': os.environ['coin_market_token'],
 }
 
-#Função responsável por retornar a conversão de Dolar para BRL em tempo real.
+######################
+# AWSOME API METHODS #
+###################### 
+
 def usdToBrl(dolar):
   try:
     response = requests.get("http://economia.awesomeapi.com.br/json/last/USD-BRL")
@@ -19,18 +23,21 @@ def usdToBrl(dolar):
   except Exception as e:
     print(e)
 
-#Função responsável por obter o ID de um token da API do coinmarketcap
-def getId(token):
+###############################
+# COIN MARKET CAP API METHODS #
+############################### 
+
+def getId(coin):
   try:
     parameters = {
-      'symbol': token['symbol']
+      'symbol': coin['symbol']
     }
 
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/map", headers=headers, params=parameters)
     response = json.loads(response.text)
     
     for data in response['data']:
-      if data['slug'] == token['slug']:
+      if data['slug'] == coin['slug']:
         return str(data['id'])
         
     return str(response['data'][0]['id'])
@@ -38,10 +45,10 @@ def getId(token):
   except Exception as e:
     print(e)
 
-def getTokenInfo(token):
+def getTokenInfo(coin):
   try:
     parameters = {
-      'slug': token['slug']
+      'slug': coin['slug']
     }
 
     response = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest", headers=headers, params=parameters)
@@ -51,11 +58,10 @@ def getTokenInfo(token):
   except Exception as e:
     print(e)
 
-#Função responsável por obter valor em dolar de um token.
-def getTokenQuote(token):
+def getTokenQuote(coin):
   try:
-    response = getTokenInfo(token)
-    token_id = getId(token)
+    response = getTokenInfo(coin)
+    token_id = getId(coin)
 
     return float(response['data'][token_id]['quote']['USD']['price'])
   except Exception as e:

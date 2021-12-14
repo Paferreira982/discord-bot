@@ -3,10 +3,18 @@ import requests
 import json
 import os
 
+###########################
+# CONFIGURATION VARIABLES #
+###########################
+
 headers = {
   'Accepts': 'application/json',
   'X-Riot-Token': os.environ['riot_token'],
 }
+
+####################
+# RIOT API METHODS #
+####################
 
 def getSummonerInfo(name):
     try:
