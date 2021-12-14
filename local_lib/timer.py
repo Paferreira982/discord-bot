@@ -5,7 +5,7 @@ class Timer:
         self._interval = interval
         self._first_immediately = first_immediately
         self._name = timer_name
-        self.cliente = cliente
+        self._cliente = cliente
         self._callback = callback
         self._is_first_call = True
         self._ok = True
