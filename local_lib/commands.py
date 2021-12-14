@@ -92,7 +92,7 @@ async def convert(command):
         print("[BOT] EXECUTING '$convert' COMMAND")
         arguments = command['arguments']
         string = beautyString("")
-        if len(arguments) == 3:
+        if len(arguments) == 2:
             coin = commons.getTokenInfo(arguments[1].lower())
 
             if coin is not None:
@@ -119,7 +119,7 @@ async def tokens(command):
         string = beautyString("")
         string += "Tokens cadastrados \n"
 
-        for tokenName in commons.getTokenInfo("all"):
+        for tokenName in getTokenInfo("all"):
             string += tokenName.lower() + " "
 
         string = beautyString(string)
