@@ -27,4 +27,4 @@ async def on_message(message):
   if message.content.startswith("$tokens"):
     return await bot.tokens(command)
 
-bot.run()
+bot.run(client)

@@ -50,7 +50,10 @@ def getCommand(message):
     while("  " in msg):
         msg = msg.replace("  ", " ")
 
-    return {'arguments': msg.split(" ").pop(0), 'message': message}
+    arguments = msg.split(" ")
+    del arguments[0]
+
+    return {'arguments': arguments, 'message': message}
 
 ##################
 # USERS COMMANDS #
