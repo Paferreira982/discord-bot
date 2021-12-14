@@ -51,9 +51,9 @@ def calculateWinRate(rank):
 def generateRankingString(rank):
     return "{} {} | {} PDL | WinRate {:.2f}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
 
-#####################
-# COMMAND FUNCTIONS #
-#####################
+####################
+# SIMPLES COMMANDS #
+####################
 
 async def help(command):
     print("[BOT] EXECUTING '$help' COMMAND")
@@ -81,7 +81,7 @@ async def price(command):
                 string += "Token {} não existente/cadastrado.".format(arg)
                 break
 
-        string += beautyString(string)
+        string = beautyString(string)
         await printMsg(string, command)
 
     except Exception as e:
@@ -107,7 +107,7 @@ async def convert(command):
         else:
             string += 'Argumentos insuficientes para o comando "$convert".'
 
-        string += beautyString(string)
+        string = beautyString(string)
         await printMsg(string, command)
 
     except Exception as e:
@@ -122,7 +122,7 @@ async def tokens(command):
         for tokenName in commons.getTokenInfo("all"):
             string += tokenName.lower() + " "
 
-        string += beautyString(string)
+        string = beautyString(string)
         await printMsg(string, command)
 
     except Exception as e:
@@ -156,7 +156,7 @@ async def rank(command):
         else:
             string += "Summoner {} não encontrado.".format(summonerName.strip())
 
-        string += beautyString(string)
+        string = beautyString(string)
         await printMsg(string, command)
 
     except Exception as e:
