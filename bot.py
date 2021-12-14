@@ -1,3 +1,7 @@
+# Author: PEDRO AUGUSTO
+# Github: https://github.com/Paferreira982
+# Description: Lib responsible for liscening main script.
+
 import discord
 import sys
 import os
@@ -20,18 +24,21 @@ statusInterval = 30
 # DISCORD COMMANDS #
 ####################
 
+# RETURN THE DISCORD CLIENT. 
 def getClient():
     try:
         return discord.Client()
     except Exception as e:
         print("[BOT] ERROR WHILE GETTING DISCORD CLIENTE: {}".format(e).upper())
-    
+
+# GENERATES A INTERVAL FOR CHANGING STATUS OVER THE TIME.    
 def generateStatusLooping(client):
     try:
         Timer(interval=statusInterval*60, first_immediately=True, client=client, callback=commons.statusInterval)
     except Exception as e:
         print("[BOT] ERROR WHILE GENERATIONG STATUS LOOPING: {}".format(e).upper())
 
+# EXECUTES SOME SCRIPTS AFTER THE SUCCESSFULLY LOGGON IN THE BOT.
 def ready(client):
     try:
         print("[BOT] LOGGED AS {0.user}".format(client).upper())
@@ -39,12 +46,14 @@ def ready(client):
     except Exception as e:
         print("[BOT] ERROR WHILE EXECUTING BOT READY: {}".format(e).upper())
 
+# RESPONSIBLE TO CALL THE SERVER AND RUN THE DISCORD BOT.
 def run(client):
     keep_alive()
     client.run(os.environ['token'])
     loop = asyncio.get_event_loop()
     loop.run_forever()
 
+# TRANSLATE THE COMMAND FROM USER TO AN PADRONIZED OBJECT.
 def getCommand(message):
     msg = message.content
     while("  " in msg):

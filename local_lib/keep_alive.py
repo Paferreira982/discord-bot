@@ -1,4 +1,6 @@
-#Código obtido na internet, responsável por subir um servidor https, afim de manter o bot online 24hrs.
+# CODE OBTAINED OVER THE INTERNET
+# Description: Script responsible for keep the server open.
+
 from flask import Flask
 from threading import Thread
 

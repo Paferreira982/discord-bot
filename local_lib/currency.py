@@ -1,3 +1,7 @@
+# Author: PEDRO AUGUSTO
+# Github: https://github.com/Paferreira982
+# Description: Lib with methos to obtain data from Awesome and Coin Market Cap API's.
+
 import requests
 import json
 import os
@@ -6,6 +10,7 @@ import os
 # CONFIGURATION VARIABLES #
 ###########################
 
+# HEADERS OF COIN MARKET CAP API.
 headers = {
   'Accepts': 'application/json',
   'X-CMC_PRO_API_KEY': os.environ['coin_market_token'],
@@ -15,6 +20,7 @@ headers = {
 # AWSOME API METHODS #
 ###################### 
 
+# CONVERT AN USD VALUE TO BRL IN REAL TIME.
 def usdToBrl(dolar):
   try:
     response = requests.get("http://economia.awesomeapi.com.br/json/last/USD-BRL")
@@ -27,6 +33,7 @@ def usdToBrl(dolar):
 # COIN MARKET CAP API METHODS #
 ############################### 
 
+# GET THE TOKEN ID FROM COIN MARKET CAP API.
 def getId(coin):
   try:
     parameters = {
@@ -45,6 +52,7 @@ def getId(coin):
   except Exception as e:
     print(e)
 
+# GET THE TOKEN INFORMATION FROM COIN MARKET CAP API.
 def getTokenInfo(coin):
   try:
     parameters = {
@@ -58,6 +66,7 @@ def getTokenInfo(coin):
   except Exception as e:
     print(e)
 
+# GET THE TOKEN QUOTE FROM COIN MARKET CAP API.
 def getTokenQuote(coin):
   try:
     response = getTokenInfo(coin)
@@ -67,6 +76,7 @@ def getTokenQuote(coin):
   except Exception as e:
     print(e)
 
+# GET THE TOKEN QUOTE FROM COIN MARKET CAP API.
 def getQuote(token, token_id):
   try:
     return float(token['data'][token_id]['quote']['USD']['price'])

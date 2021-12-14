@@ -1,3 +1,7 @@
+# CODE OBTAINED OVER THE INTERNET AND PERSONALIZATED BY PEDRO AUGUSTO
+# Github: https://github.com/Paferreira982
+# Description: Class necessary for doing intervals for assyncronous methods.
+
 import asyncio
 
 class Timer:

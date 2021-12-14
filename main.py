@@ -1,3 +1,6 @@
+# Author: PEDRO AUGUSTO
+# Github: https://github.com/Paferreira982
+
 import bot
 client = bot.getClient()
 
