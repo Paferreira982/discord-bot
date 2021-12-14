@@ -1,6 +1,7 @@
 import asyncio
+import discord
 
-clientAux = ""
+clientAux = discord.Client()
 
 class Timer:
     def __init__(self, interval, first_immediately, timer_name, client, callback):
