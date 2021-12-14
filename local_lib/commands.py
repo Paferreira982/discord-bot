@@ -93,7 +93,7 @@ async def convert(command):
         arguments = command['arguments']
         string = beautyString("")
         if len(arguments) == 2:
-            coin = commons.getTokenInfo(arguments[1].lower())
+            coin = getTokenInfo(arguments[1].lower())
 
             if coin is not None:
                 usd = commons.getTokenQuote(coin)
