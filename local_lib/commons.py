@@ -44,7 +44,7 @@ def getTokenInfo(tokenName):
 
 def getRandomStatusString():
     tokens = getTokenInfo("all")
-    i = random.randint(0,len(tokens))
+    i = random.randint(0,len(tokens)-1)
 
     coin = getTokenInfo(tokens[i].lower())
     print("[BOT] CHANGING STATUS TO {}".format(coin['symbol']))

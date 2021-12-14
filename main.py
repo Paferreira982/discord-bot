@@ -18,6 +18,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
   print("Logado como {0.user}".format(client))
+  Timer(interval=1200, first_immediately=True, timer_name="Timer 1", cliente=client, callback=commons.statusInterval)
   
 #Função responsável por capturar a input do usuário e identificar qual comando foi enviado.
 @client.event
@@ -48,6 +49,5 @@ async def on_message(message):
 keep_alive()
 client.run(os.environ['token'])
 
-Timer(interval=1200, first_immediately=True, timer_name="Timer 1", cliente=client, callback=commons.statusInterval)
 loop = asyncio.get_event_loop()
 loop.run_forever()
