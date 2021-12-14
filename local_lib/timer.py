@@ -13,10 +13,11 @@ class Timer:
 
     async def _job(self):
         try:
+            client = self._client
             while self._ok:
                 if not self._is_first_call or not self._first_immediately:
                     await asyncio.sleep(self._interval)
-                await self._callback(self._client)
+                await self._callback(client)
                 self._is_first_call = False
         except Exception as ex:
             print(ex)
