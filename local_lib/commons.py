@@ -31,8 +31,8 @@ def getRandomStatusString():
 async def statusInterval(client):
     try:
         await client.change_presence(activity=discord.Game(name=getRandomStatusString()))
-    except Exception:
-        print("[BOT] STATUS NÃO ATUALIZADO")
+    except Exception as e:
+        print("[BOT] STATUS NÃO ATUALIZADO: {}".format(e))
 
 ##############################
 # COMMUNICATION BETWEEN LIBS #
