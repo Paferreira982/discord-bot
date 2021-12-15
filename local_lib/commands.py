@@ -26,11 +26,11 @@ Comandos League of Legends
 # UTILITIES FUNCTIONS #
 #######################
 
-# ADD AN TEXT COMMAND TO BEAUTY THE STRING.
+# ADD A TEXT COMMAND TO BEAUTY THE STRING.
 def beautyString(string):
     return string + "```"
 
-# RETURNS AN INFORMATION ABOUT AN TOKEN.
+# RETURNS AN INFORMATION ABOUT A TOKEN.
 # YOU CAN SAVE NEW TOKENS BY ADD IN THIS METHOD.
 def getTokenInfo(tokenName):
     if tokenName == "bcoin":
@@ -66,7 +66,7 @@ def generateRankingString(rank):
 # SIMPLES COMMANDS #
 ####################
 
-# EXECUTES THE '$help' COMMAND.
+# EXECUTE THE '$help' COMMAND.
 async def help(command):
     print("[BOT] EXECUTING '$help' COMMAND")
     await printMsg(helpString, command)
@@ -75,7 +75,7 @@ async def help(command):
 # NFT COMMANDS #
 ################ 
 
-# EXECUTES THE '$price' COMMAND.
+# EXECUTE THE '$price' COMMAND.
 async def price(command):
     try:
         print("[BOT] EXECUTING '$price' COMMAND")
@@ -100,7 +100,7 @@ async def price(command):
     except Exception as e:
         print("[BOT] ERROR WHILE RUNNING COMMAND '$price': {}".format(e).upper())
 
-# EXECUTES THE '$convert' COMMAND.
+# EXECUTE THE '$convert' COMMAND.
 async def convert(command):
     try:
         print("[BOT] EXECUTING '$convert' COMMAND")
@@ -127,7 +127,7 @@ async def convert(command):
     except Exception as e:
         print("[BOT] ERROR WHILE RUNNING COMMAND '$convert': {}".format(e).upper())
 
-# EXECUTES THE '$tokens' COMMAND.
+# EXECUTE THE '$tokens' COMMAND.
 async def tokens(command):
     try:
         print("[BOT] EXECUTING '$tokens' COMMAND")
@@ -147,7 +147,7 @@ async def tokens(command):
 # LEAGUE OF LEGENDS COMMANDS #
 ############################## 
 
-# EXECUTES THE '$rank' COMMAND.
+# EXECUTE THE '$rank' COMMAND.
 async def rank(command):
     try:
         print("[BOT] EXECUTING '$rank' COMMAND")
