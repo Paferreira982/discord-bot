@@ -43,8 +43,10 @@ def getTokenInfo(tokenName):
         return {'slug': 'the-crypto-you', 'symbol': 'MILK'}
     if tokenName == "baby":
         return {'slug': 'babyswap', 'symbol': 'BABY'}
+    if tokenName == "ccar":
+        return {'slug': 'cryptocars', 'symbol': 'CCAR'}
     if tokenName == "all":
-        return ['BCOIN','THC','SLP','MILK','BABY']
+        return ['BCOIN','THC','SLP','MILK','BABY','CCAR']
     return None
 
 # MAKE THE DISCORD BOT WRITE AN MESSAGE.

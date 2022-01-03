@@ -36,10 +36,10 @@ def getCoin():
     if i is None:
         i = random.randint(0,len(tokens)-1)
     else:
-        aux = i
-        while aux == i:
-            aux = random.randint(0,len(tokens)-1)
-        i = aux
+        if i < len(tokens)-1:
+            i += 1
+        else:
+            i = 0
     
     return commands.getTokenInfo(tokens[i].lower())
 
