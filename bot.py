@@ -17,11 +17,8 @@ from keep_alive import keep_alive
 # CONFIGURATION VARIABLES #
 ###########################
 
-async def setClient():
-    return await discord.Client()
-
 # DISCORD CLIENT
-client = setClient()
+client = discord.Client()
 
 # TIME IN MINUTES OF THE BOT STATUS CHANGE. 
 statusInterval = 15
