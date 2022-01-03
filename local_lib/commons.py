@@ -85,7 +85,7 @@ async def statusManager(clientObj):
     except Exception as e:
         print("[BOT] ERRO AO GERENCIAR STATUS: {}".format(e))
 
-def statusController(client):
+async def statusController(client):
     try:
         global statusTimer
 
