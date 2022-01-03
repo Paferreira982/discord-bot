@@ -15,6 +15,13 @@ from timer import Timer
 # CONFIGURATION VARIABLES #
 ###########################
 
+# TIME IN MINUTES OF THE BOT STATUS CHANGE. 
+statusInterval = 1
+
+####################
+# GLOBAL VARIABLES #
+####################
+
 tokens = commands.getTokenInfo("all")
 statusTimer = None
 i = None
@@ -65,12 +72,10 @@ async def statusManager(clientObj):
     else:
         status = "{} {} {:.2f}%".format(clientObj['formatedToken']['symbol'], arrow, clientObj['formatedToken']['dailyChange'])
         clientObj['state'] = 0
-    
-    print("[BOT] CHANGING STATUS VIEW TO {} STATE".format(clientObj['state']))
-    print(clientObj)
+
     await commands.changeStatus(clientObj['client'], status)
 
-def statusInterval(client):
+def statusController(client):
     try:
         global statusTimer
 
@@ -83,7 +88,7 @@ def statusInterval(client):
             'state': 0
         }
 
-        statusTimer = Timer(interval=30, first_immediately=True, client=client, callback=statusManager)
+        statusTimer = Timer(interval=statusInterval*60, first_immediately=True, client=client, callback=statusManager)
     except Exception as e:
         print("[BOT] ERRO AO INICIAR O TIMER DE MUDANÇA DE STATUS: {}".format(e))
 

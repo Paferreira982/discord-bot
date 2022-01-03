@@ -34,7 +34,7 @@ def getClient():
 # GENERATES AN INTERVAL FOR CHANGING STATUS OVER THE TIME.    
 def generateStatusLooping():
     try:
-        Timer(interval=statusInterval*60, first_immediately=True, client=client, callback=commons.statusInterval)
+        Timer(interval=statusInterval*60, first_immediately=True, client=client, callback=commons.statusController)
     except Exception as e:
         print("[BOT] ERROR WHILE GENERATIONG STATUS LOOPING: {}".format(e).upper())
 
