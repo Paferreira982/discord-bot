@@ -30,7 +30,7 @@ i = None
 # COMMON METHODS #
 ##################
 
-def getCoin():
+def getStatusCoin():
     global i
 
     if i is None:
@@ -84,7 +84,7 @@ def statusController(client):
 
         client = {
             'client': client,
-            'formatedToken': formatToken(getCoin()),
+            'formatedToken': formatToken(getStatusCoin()),
             'state': 0
         }
 

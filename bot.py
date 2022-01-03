@@ -3,6 +3,7 @@
 # Description: Lib responsible for liscening main script.
 
 import discord
+import time
 import sys
 import os
 import asyncio
@@ -19,9 +20,10 @@ from keep_alive import keep_alive
 
 # DISCORD CLIENT
 client = discord.Client()
+time.sleep(3)
 
 # TIME IN MINUTES OF THE BOT STATUS CHANGE. 
-statusInterval = 30
+statusInterval = 15
 
 ####################
 # DISCORD COMMANDS #
