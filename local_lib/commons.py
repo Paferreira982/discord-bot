@@ -99,6 +99,8 @@ def statusController(client):
         }
 
         statusTimer = Timer(interval=statusInterval*60, first_immediately=True, client=clientObj, callback=statusManager)
+
+        return
     except Exception as e:
         print("[BOT] ERRO AO INICIAR O TIMER DE MUDANÇA DE STATUS: {}".format(e))
 
