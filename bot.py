@@ -23,6 +23,8 @@ client = discord.Client()
 # TIME IN MINUTES OF THE BOT STATUS CHANGE. 
 statusInterval = 15
 
+statusTimer = None
+
 ####################
 # DISCORD COMMANDS #
 ####################
@@ -34,7 +36,7 @@ def getClient():
 # GENERATES AN INTERVAL FOR CHANGING STATUS OVER THE TIME.    
 def generateStatusLooping():
     try:
-        Timer(interval=statusInterval*60, first_immediately=True, client=client, callback=commons.statusController)
+        statusTimer = Timer(interval=statusInterval*60, first_immediately=True, client=client, callback=commons.statusController)
     except Exception as e:
         print("[BOT] ERROR WHILE GENERATIONG STATUS LOOPING: {}".format(e).upper())
 
