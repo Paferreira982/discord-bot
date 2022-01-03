@@ -66,7 +66,7 @@ async def statusManager(clientObj):
         status = "{} {} {:.2f}%".format(clientObj['formatedToken']['symbol'], arrow, clientObj['formatedToken']['dailyChange'])
         clientObj['state'] = 0
     
-    print("[BOT] CHANGING STATUS VIEW TO {} STATE", clientObj['state'])
+    print("[BOT] CHANGING STATUS VIEW TO {} STATE".format(clientObj['state']))
     print(clientObj)
     await commands.changeStatus(clientObj['client'], status)
 
@@ -83,7 +83,7 @@ def statusInterval(client):
             'state': 0
         }
 
-        statusTimer = Timer(interval=120, first_immediately=True, client=client, callback=statusManager)
+        statusTimer = Timer(interval=30, first_immediately=True, client=client, callback=statusManager)
     except Exception as e:
         print("[BOT] ERRO AO INICIAR O TIMER DE MUDANÇA DE STATUS: {}".format(e))
 
