@@ -24,6 +24,8 @@ i = None
 ##################
 
 def getCoin():
+    global i
+    
     if i is None:
         i = random.randint(0,len(tokens)-1)
     else:
@@ -68,6 +70,8 @@ async def statusManager(clientObj):
 
 def statusInterval(client):
     try:
+        global statusTimer
+
         if statusTimer is not None:
             statusTimer.cancel()
 
