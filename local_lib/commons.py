@@ -25,7 +25,7 @@ i = None
 
 def getCoin():
     global i
-    
+
     if i is None:
         i = random.randint(0,len(tokens)-1)
     else:
@@ -66,6 +66,8 @@ async def statusManager(clientObj):
         status = "{} {} {:.2f}%".format(clientObj['formatedToken']['symbol'], arrow, clientObj['formatedToken']['dailyChange'])
         clientObj['state'] = 0
     
+    print("[BOT] CHANGING STATUS VIEW TO {} STATE", clientObj['state'])
+    print(clientObj)
     await commands.changeStatus(clientObj['client'], status)
 
 def statusInterval(client):
