@@ -52,7 +52,7 @@ async def printMsg(string, command):
     try:
         await command['message'].channel.send(string)
     except Exception as e:
-        print("[BOT] ERROR WHILE PRITING MESSAGE IN DISCORD: {}".format(e).upper())
+        print("[BOT] ERROR WHILE PRINTING MESSAGE IN DISCORD: {}".format(e).upper())
 
 # CALCULATE THE WIN RATE.
 def calculateWinRate(rank):
@@ -61,6 +61,16 @@ def calculateWinRate(rank):
 # GENERATE A STRING FROM '$rank' COMMAND.
 def generateRankingString(rank):
     return "{} {} | {} PDL | WinRate {:.2f}%".format(rank['tier'], rank['rank'], rank['leaguePoints'], calculateWinRate(rank))
+
+##################
+# STATUS COMMAND #
+##################
+
+async def changeStatus(client, status):
+    try:
+        await client.change_presence(activity=discord.Game(name=status))
+    except Exception as e:
+        print("[BOT] STATUS NÃO ATUALIZADO: {}".format(e))
 
 ####################
 # SIMPLES COMMANDS #

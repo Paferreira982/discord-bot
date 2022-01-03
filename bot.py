@@ -17,6 +17,9 @@ from keep_alive import keep_alive
 # CONFIGURATION VARIABLES #
 ###########################
 
+# DISCORD CLIENT
+client = discord.Client()
+
 # TIME IN MINUTES OF THE BOT STATUS CHANGE. 
 statusInterval = 30
 
@@ -26,28 +29,25 @@ statusInterval = 30
 
 # RETURN THE DISCORD CLIENT. 
 def getClient():
-    try:
-        return discord.Client()
-    except Exception as e:
-        print("[BOT] ERROR WHILE GETTING DISCORD CLIENT: {}".format(e).upper())
+    return client
 
 # GENERATES AN INTERVAL FOR CHANGING STATUS OVER THE TIME.    
-def generateStatusLooping(client):
+def generateStatusLooping():
     try:
         Timer(interval=statusInterval*60, first_immediately=True, client=client, callback=commons.statusInterval)
     except Exception as e:
         print("[BOT] ERROR WHILE GENERATIONG STATUS LOOPING: {}".format(e).upper())
 
 # EXECUTE SOME SCRIPTS AFTER THE SUCCESSFULLY LOGIN.
-def ready(client):
+def ready():
     try:
         print("[BOT] LOGGED AS {0.user}".format(client).upper())
-        generateStatusLooping(client)
+        generateStatusLooping()
     except Exception as e:
         print("[BOT] ERROR WHILE EXECUTING BOT READY: {}".format(e).upper())
 
 # RESPONSIBLE FOR CALL THE SERVER AND RUN THE DISCORD BOT.
-def run(client):
+def run():
     keep_alive()
     client.run(os.environ['token'])
     loop = asyncio.get_event_loop()
@@ -64,9 +64,9 @@ def getCommand(message):
 
     return {'arguments': arguments, 'message': message}
 
-##################
+###################
 # USER'S COMMANDS #
-##################
+###################
 
 async def help(command):
     return await commands.help(command)

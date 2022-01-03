@@ -2,11 +2,12 @@
 # Github: https://github.com/Paferreira982
 
 import bot
+
 client = bot.getClient()
 
 @client.event
 async def on_ready():
-  bot.ready(client)
+  bot.ready()
   
 @client.event
 async def on_message(message):
@@ -30,4 +31,4 @@ async def on_message(message):
   if message.content.startswith("$tokens"):
     return await bot.tokens(command)
 
-bot.run(client)
+bot.run()

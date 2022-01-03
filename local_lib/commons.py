@@ -9,30 +9,79 @@ import currency
 import riot_lib
 import commands
 
+from timer import Timer
+
+###########################
+# CONFIGURATION VARIABLES #
+###########################
+
+tokens = commands.getTokenInfo("all")
+statusTimer = None
+i = None
+
 ##################
 # COMMON METHODS #
 ##################
 
-def getRandomStatusString():
-    tokens = commands.getTokenInfo("all")
-    i = random.randint(0,len(tokens)-1)
+def getCoin():
+    if i is None:
+        i = random.randint(0,len(tokens)-1)
+    else:
+        aux = i
+        while aux == i:
+            aux = random.randint(0,len(tokens)-1)
+        i = aux
+    
+    return commands.getTokenInfo(tokens[i].lower())
 
-    coin = commands.getTokenInfo(tokens[i].lower())
+def formatToken(coin):
     print("[BOT] CHANGING STATUS TO {}".format(coin['symbol']))
 
     token_id = currency.getId(coin)
-
     token = currency.getTokenInfo(coin)
     usd = currency.getQuote(token, token_id)
-
     dailyChange = float(token['data'][token_id]['quote']['USD']['percent_change_24h'])
-    return "{} R$ {:.2f} | {:.2f}%".format(coin['symbol'], currency.usdToBrl(usd), dailyChange)
 
-async def statusInterval(client):
+    return {
+        'symbol': coin['symbol'],
+        'dailyChange': dailyChange,
+        'quote': currency.usdToBrl(usd)
+    }
+
+async def statusManager(clientObj):
+    arrow = ""
+    status = ""
+
+    if clientObj['formatedToken']['dailyChange'] > 0:
+        arrow = "↗️"
+    else:
+        arrow = "↘️"
+
+    if clientObj['state'] == 0:
+        status = "{} R$ {:.2f}".format(clientObj['formatedToken']['symbol'], clientObj['formatedToken']['quote'])
+        clientObj['state'] = 1
+    else:
+        status = "{} {} {:.2f}%".format(clientObj['formatedToken']['symbol'], arrow, clientObj['formatedToken']['dailyChange'])
+        clientObj['state'] = 0
+    
+    await commands.changeStatus(clientObj['client'], status)
+
+def statusInterval(client):
     try:
-        await client.change_presence(activity=discord.Game(name=getRandomStatusString()))
+        if statusTimer is not None:
+            statusTimer.cancel()
+
+        client = {
+            'client': client,
+            'formatedToken': formatToken(getCoin()),
+            'state': 0
+        }
+
+        statusTimer = Timer(interval=120, first_immediately=True, client=client, callback=statusManager)
     except Exception as e:
-        print("[BOT] STATUS NÃO ATUALIZADO: {}".format(e))
+        print("[BOT] ERRO AO INICIAR O TIMER DE MUDANÇA DE STATUS: {}".format(e))
+
+
 
 ##############################
 # COMMUNICATION BETWEEN LIBS #
