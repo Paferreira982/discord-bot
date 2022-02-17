@@ -46,7 +46,7 @@ def getTokenInfo(tokenName):
     if tokenName == "lus":
         return {'slug': 'luna-rush', 'symbol': 'LUS'}
     if tokenName == "all":
-        return ['BCOIN','THC','SLP','MILK','BABY','CCAR']
+        return ['BCOIN','SLP','SPE','SPG','TURT','LUS']
     return None
 
 # MAKE THE DISCORD BOT WRITE AN MESSAGE.
