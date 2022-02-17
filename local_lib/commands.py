@@ -35,16 +35,16 @@ def beautyString(string):
 def getTokenInfo(tokenName):
     if tokenName == "bcoin":
         return {'slug': 'bombcrypto', 'symbol': 'BCOIN'}
-    if tokenName == "thetan":
-        return {'slug': 'thetan-coin', 'symbol': 'THC'}
     if tokenName == "slp":
         return {'slug': 'smooth-love-potion', 'symbol': 'SLP'}
-    if tokenName == "milk":
-        return {'slug': 'the-crypto-you', 'symbol': 'MILK'}
-    if tokenName == "baby":
-        return {'slug': 'babyswap', 'symbol': 'BABY'}
-    if tokenName == "ccar":
-        return {'slug': 'cryptocars', 'symbol': 'CCAR'}
+    if tokenName == "spe":
+        return {'slug': 'space-crypto-spe', 'symbol': 'SPE'}
+    if tokenName == "spg":
+        return {'slug': 'space-crypto', 'symbol': 'SPG'}
+    if tokenName == "turt":
+        return {'slug': 'turtle-racing', 'symbol': 'TURT'}
+    if tokenName == "lus":
+        return {'slug': 'luna-rush', 'symbol': 'LUS'}
     if tokenName == "all":
         return ['BCOIN','THC','SLP','MILK','BABY','CCAR']
     return None

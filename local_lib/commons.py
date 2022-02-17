@@ -2,7 +2,6 @@
 # Github: https://github.com/Paferreira982
 # Description: Lib responsible for connect all libs with methods.
 
-import discord
 import random
 
 import currency
