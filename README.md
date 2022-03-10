@@ -12,6 +12,6 @@ pip install discord.py
 python main.py
 
 <h3>Variáveis de ambiente</h3>
-token = Token da API do Discord.
-coin_market_token = Token da API do Coin Market Token.
+token = Token da API do Discord. <br>
+coin_market_token = Token da API do Coin Market Token. <br>
 riot_token = Token da API da RIOT GAMES.
