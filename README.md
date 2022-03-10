@@ -3,7 +3,7 @@ Bot capaz de informar em tempo real valores de tokens cadastrados no sistema e s
 Também é capaz de expor informações da sua conta no jogo League of Legends.
 
 <h3>Comandos: $help</h3>
-![image](https://user-images.githubusercontent.com/67207736/157734434-746aa294-a9a6-44b0-8d8a-bb890de97f8d.png)
+<img src="https://user-images.githubusercontent.com/67207736/157734761-6b686fee-cae7-4547-9707-49e3822e8723.png"/>
 
 <h3>Instalar dependências</h3>
 pip install discord.py
